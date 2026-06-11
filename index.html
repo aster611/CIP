@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CIP Risk Calculator</title>
+    <meta
+      name="description"
+      content="Calculation tool for predicting immune checkpoint inhibitor-related pneumonitis risk in patients receiving first-line immunotherapy."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Clinical Prediction Calculator</p>
+          <h1 id="page-title">CIP Risk Calculator</h1>
+          <p class="lede">
+            Calculation tool for predicting risk of immune checkpoint inhibitor-related pneumonitis in
+            patients with non-small cell lung cancer receiving first-line immunotherapy.
+          </p>
+          <div class="hero-meta" aria-label="Model summary">
+            <span>5 binary predictors</span>
+            <span>Logistic regression</span>
+            <span>Live score map</span>
+          </div>
+        </div>
+        <div class="hero-panel" aria-live="polite">
+          <span class="panel-label">Predicted CIP Risk</span>
+          <strong id="hero-risk">--</strong>
+          <span id="hero-risk-note">Select patient factors to calculate.</span>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="Risk calculator">
+        <form class="calculator" id="calculator">
+          <div class="section-heading">
+            <p class="eyebrow">Patient Factors</p>
+            <h2>Binary Variables</h2>
+            <p>For each factor, choose No = 0 or Yes = 1.</p>
+          </div>
+
+          <div class="factor-list" id="factor-list"></div>
+
+          <div class="form-actions">
+            <button class="primary-button" type="button" id="calculate-button">Calculate Risk</button>
+            <button class="secondary-button" type="reset">Reset</button>
+          </div>
+        </form>
+
+        <aside class="results" aria-label="Prediction results">
+          <div class="section-heading compact">
+            <p class="eyebrow">Result</p>
+            <h2>Risk Estimate</h2>
+          </div>
+
+          <div class="risk-display">
+            <div class="risk-number" id="risk-percent">--</div>
+            <div class="risk-bar" aria-hidden="true">
+              <span id="risk-fill"></span>
+            </div>
+            <p class="risk-category" id="risk-category">Awaiting calculation</p>
+          </div>
+
+          <dl class="metrics">
+            <div>
+              <dt>Total nomogram score</dt>
+              <dd id="score-value">--</dd>
+            </div>
+            <div>
+              <dt>Logit</dt>
+              <dd id="logit-value">--</dd>
+            </div>
+            <div>
+              <dt>Selected risk factors</dt>
+              <dd id="selected-count">0 / 5</dd>
+            </div>
+          </dl>
+
+          <p class="clinical-note">
+            This calculator supports risk estimation only and does not replace clinician assessment,
+            diagnostic workup, or institutional treatment protocols.
+          </p>
+        </aside>
+      </section>
+
+      <section class="dynamic-nomogram-section" aria-label="Dynamic nomogram">
+        <div class="section-heading">
+          <p class="eyebrow">Interactive Nomogram</p>
+          <h2>Subject-Specific Score Map</h2>
+          <p>
+            Each row updates from the selected patient factors. Active markers show the assigned
+            points, total score, and predicted CIP risk.
+          </p>
+        </div>
+        <div class="dynamic-nomogram" id="dynamic-nomogram"></div>
+      </section>
+
+      <section class="model-section" aria-label="Model details">
+        <div class="model-copy">
+          <div class="section-heading">
+            <p class="eyebrow">Model</p>
+            <h2>Logistic Regression Parameters</h2>
+            <p>
+              Probability = 1 / (1 + e<sup>-logit</sup>), where logit is the intercept plus the sum
+              of selected binary predictors and their coefficients.
+            </p>
+          </div>
+          <div class="formula" id="formula"></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Variable</th>
+                <th>Coefficient</th>
+                <th>Weight</th>
+                <th>OR</th>
+              </tr>
+            </thead>
+            <tbody id="parameter-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
