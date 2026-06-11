@@ -1,0 +1,37 @@
+{
+  "model_name": "CIP_Prediction_Model",
+  "intercept": -2.62789827585594,
+  "coefficients": {
+    "Radiotherapy1": 1.67472765949244,
+    "Reticular_opacities1": 1.17783752617838,
+    "Heart_disease1": 1.37104478854538,
+    "COPD1": 0.80193270992934,
+    "Lung_surgery1": 0.576667100167027
+  },
+  "variables": ["Radiotherapy1", "Reticular_opacities1", "Heart_disease1", "COPD1", "Lung_surgery1"],
+  "weights": {
+    "Radiotherapy1": 29.8940547385792,
+    "Reticular_opacities1": 21.0245166019413,
+    "Heart_disease1": 24.4732853879305,
+    "COPD1": 14.3145783682527,
+    "Lung_surgery1": 10.2935649032963
+  },
+  "odds_ratios": {
+    "Radiotherapy1": 5.33734137686203,
+    "Reticular_opacities1": 3.24734430759192,
+    "Heart_disease1": 3.93946445342854,
+    "COPD1": 2.22984641282907,
+    "Lung_surgery1": 1.78009565240616
+  },
+  "confidence_intervals": {
+    "lower": [2.7287, 1.3626, 1.322, 1.2002, 0.8651],
+    "upper": [10.4399, 7.7393, 11.7393, 4.1428, 3.663]
+  },
+  "p_values": {
+    "Radiotherapy1": 9.9535e-07,
+    "Reticular_opacities1": 0.0079,
+    "Heart_disease1": 0.0139,
+    "COPD1": 0.0112,
+    "Lung_surgery1": 0.1173
+  }
+}
